@@ -128,6 +128,7 @@ https://nodejs.org/api/modules.html#modules_exports_shortcut
 `module.exports.f = ...`のショートカットであり、同じ処理が行われる。
 
 `exports = { hoge: 'hoge' }`は、  
-`exports`というローカル変数にオブジェクトリテラルを代入している。もちろんモジュール内の変数としては使えるけど、requireはできない。
+`exports`というローカル変数にオブジェクトリテラルを代入している。  
+もちろんモジュール内の変数としては使えるけど、requireはできない。
 
 納得！！:tada:
