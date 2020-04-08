@@ -45,30 +45,6 @@ fuga
 undefined
 ```
 
-ただ、こっちは、exportsじゃできない。
-```js
-// my-module.js
-exports = {
-  hoge: 'hoge',
-  fuga: 'fuga',
-};
-```
-```js
-//main.js
-const myModule = require('./my-module');
-
-console.log(myModule.hoge);
-console.log(myModule.fuga);
-console.log(myModule.macho);
-```
-```shell
-// shell
-$ node main.js
-undefined
-undefined
-undefined
-```
-
 また、オブジェクトの代入時点で値が変わるので、代入以前にexportsした情報は失われる。
 ```js
 // my-module.js
@@ -113,6 +89,31 @@ $ node main.js
 ogject
 ```
 
+問題はこれ。  
+exportsで代入ができない。
+```js
+// my-module.js
+exports = {
+  hoge: 'hoge',
+  fuga: 'fuga',
+};
+```
+```js
+//main.js
+const myModule = require('./my-module');
+
+console.log(myModule.hoge);
+console.log(myModule.fuga);
+console.log(myModule.macho);
+```
+```shell
+// shell
+$ node main.js
+undefined
+undefined
+undefined
+```
+
 「`exports`」 と 「`module.exports`」 の違いがよくわからない:sweat:  
 いまのとこの挙動を見る限り、  
 `exports`は、  
@@ -128,3 +129,5 @@ https://nodejs.org/api/modules.html#modules_exports_shortcut
 
 `exports = { hoge: 'hoge' }`は、  
 `exports`というローカル変数にオブジェクトリテラルを代入している。もちろんモジュール内の変数としては使えるけど、requireはできない。
+
+納得！！:tada:
